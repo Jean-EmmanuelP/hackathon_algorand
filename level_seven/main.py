@@ -38,7 +38,7 @@ params.fee = 0
 params.flat_fee = True
 
 # Create the 'authorize' method call transaction
-authorize_method_selector = "forward_auth()void"
+# authorize_method_selector = "forward_auth()void"
 authorize_txn = ApplicationNoOpTxn(
     sender=sender_address,
     sp=params,
