@@ -1,0 +1,15 @@
+#pragma version 10
+
+txn ApplicationID
+int 0
+==
+bnz on_creation
+
+err
+
+on_creation:
+    pushbytes "access"
+    txn Sender
+    app_global_put
+    int 1
+    return

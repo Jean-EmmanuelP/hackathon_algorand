@@ -1,0 +1,8 @@
+Level 6: Contract to Contract (ABI Compliant)
+AppID: 724672235
+During the OptIn the application will perform an inner transaction call to an app ID you provide,
+passing 2 numbers using the ABI method `sum(uint64,uint64)uint64`.
+The response (LastLog) must be the sum. The apps creator address must also be the same as the sender.
+
+Solution: Create a smart contract that sums two arguments and returns the result.
+
