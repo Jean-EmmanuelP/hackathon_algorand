@@ -37,21 +37,21 @@ def opt_in_with_level6_call(client, level6_app_id, sum_app_id, sender_address, s
     transaction.wait_for_confirmation(client, txid)
     print(f"Opted in to level 6 with callback to our app. TxID: {txid}")
 
-# def clear_state_app(client, app_id, sender_address, sender_private_key):
-#     params = client.suggested_params()
+def clear_state_app(client, app_id, sender_address, sender_private_key):
+    params = client.suggested_params()
     
-#     # Create the ClearState transaction
-#     txn = transaction.ApplicationCallTxn(
-#         sender=sender_address,
-#         sp=params,
-#         index=app_id,
-#         on_complete=transaction.OnComplete.ClearStateOC,
-#     )
+    # Create the ClearState transaction
+    txn = transaction.ApplicationCallTxn(
+        sender=sender_address,
+        sp=params,
+        index=app_id,
+        on_complete=transaction.OnComplete.ClearStateOC,
+    )
     
-#     signed_txn = txn.sign(sender_private_key)
-#     txid = client.send_transaction(signed_txn)
-#     transaction.wait_for_confirmation(client, txid)
-#     print(f"Cleared state for app {app_id}. TxID: {txid}")
+    signed_txn = txn.sign(sender_private_key)
+    txid = client.send_transaction(signed_txn)
+    transaction.wait_for_confirmation(client, txid)
+    print(f"Cleared state for app {app_id}. TxID: {txid}")
 
 if __name__ == "__main__":
     # Set the SSL_CERT_FILE environment variable for Algonode connections
@@ -72,10 +72,10 @@ if __name__ == "__main__":
     algod_client = connect_to_algorand_testnet()
     
     # First clear state (opt out)
-    # try:
-    #     clear_state_app(algod_client, LEVEL6_APP_ID, address, private_key)
-    # except Exception as e:
-    #     print(f"Clear state failed (this is ok if not opted in): {e}")
+    try:
+        clear_state_app(algod_client, LEVEL6_APP_ID, address, private_key)
+    except Exception as e:
+        print(f"Clear state failed (this is ok if not opted in): {e}")
     
     # Then opt in again
     opt_in_with_level6_call(algod_client, LEVEL6_APP_ID, sum_app_id, address, private_key) 

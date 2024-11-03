@@ -2,6 +2,8 @@
 */.env
 .venv
 .vscode
+perso
+*.teal
 .idea
 .pytest_cache
 .env.local
